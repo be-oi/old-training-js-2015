@@ -17,7 +17,7 @@ angular.module('beoi', [
   'authProvider', '$httpProvider', '$logProvider',
   function (authProvider, $httpProvider, $logProvider) {
   console.log('app.config');
-  $logProvider.debugEnabled(true);
+  $logProvider.debugEnabled(false);
   authProvider.init({
     domain: 'beoi.auth0.com',
     clientID: 'dmr6gDogihnwo6O47BD6eclcqjvITc8q',
