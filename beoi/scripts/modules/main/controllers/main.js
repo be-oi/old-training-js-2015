@@ -81,7 +81,7 @@ angular
           })
           .error(function(data, status, headers, config) {
             $log.debug("/api/me error: "+status);
-            if (status == 404) {
+            if (status == 403) {
               alert("Cannot log in. Have you signed up?")
             } else {
               alert("Hum something went wrong... ")
