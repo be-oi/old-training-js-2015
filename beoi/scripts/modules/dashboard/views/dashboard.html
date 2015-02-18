@@ -1,0 +1,124 @@
+
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<!-- <div class="jumbotron">
+  <div class="container">
+    <h1>Hello, world! {{test}}</h1>
+    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <p><a class="btn btn-primary btn-lg" role="button">Learn more »</a></p>
+  </div>
+</div> -->
+
+<!-- Example row of columns -->
+<div class="row">
+  <div class="col-md-8">
+
+    <div ng-controller="OnlineContestsCtrl">
+      <h2>Latest online contest results</h2>
+      <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Contest</th>
+          <th>Contestant</th>
+          <th>Score</th>
+          <th>Pos</th>
+       </tr>
+      </thead>
+      <tbody ng-repeat="result in results">
+        <tr>
+          <td>{{ result.creation_time }}</td>
+          <td><a ui-sref="contest({contest_id: result.contest_id})">{{ result.contest_name }}</a></td>
+          <td><a ui-sref="contestant({contestant_id: result.user_id })">{{ result.user_name }}</a></td>
+          <td>{{ result.score }}pts</td>
+          <td>{{ result.rank }}</td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add-contest-modal">Add contest</button>
+
+  </div>
+
+  <div class="col-md-4">
+
+    <div ng-controller="UpcomingContestsCtrl">
+      <h2>Upcoming Online Contest</h2>
+      <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Contest</th>
+       </tr>
+      </thead>
+      <tbody ng-repeat="contest in results">
+        <tr>
+          <td>{{ contest.start_time }}</td>
+          <td><a ui-sref="contest({contest_id: contest.contest_id})">{{ contest.name }}</a></td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+<div class="row">
+
+  <div class="col-md-12">
+
+    <div ng-controller="LatestUVACtrl">
+      <h2>UVA Problems Solved</h2>
+      <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th></th>
+          <th ng-repeat="uva_pid in uva_pids track by $index">{{uva_problems[uva_pid].title}}
+            <a href="{{uva_problems[uva_pid].ext_problem_url1}}" target="_blank" title="Problem description"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></a>
+            <a href="{{uva_problems[uva_pid].submit_url}}" target="_blank" title="Submit solution"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span></a>
+          </th>
+       </tr>
+      </thead>
+      <tbody ng-repeat="uva_user_results in uva_results track by $index">
+        <tr>
+          <td style="font-weight: bold;">{{ uva_user_results.name }}</td>
+          <td ng-repeat="uva_user_result in uva_user_results.uva_problem_results track by $index">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true" ng-show="uva_user_result"></span>
+          </td>
+        </tr>
+      </tbody>
+      </table>
+      <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#edit-profile">Configure my UVA number</button>
+
+      <!-- User profile edition modal -->
+<div class="modal fade" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">About you</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="contest_name">Your UVa username (created on http://uva.onlinejudge.org/)</label>
+          <input class="form-control" id="modal-uva-username" >
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" ng-click="submit_uva_username()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /User profile edition modal -->
+
+
+    </div>
+
+
+
+  </div>
+
+</div>

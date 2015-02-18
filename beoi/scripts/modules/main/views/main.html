@@ -1,0 +1,92 @@
+<nav class="navbar navbar-inverse navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+
+    <div class="navbar-header">
+
+      <a class="navbar-brand" href="#">beOI Training Platform</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li ng-show="!user"><a href="#" ng-click="signup_step1()">Sign up</a></li>
+        <li ng-show="!user"><a href="#" ng-click="login()">Log in</a></li>
+        <li ng-show="user"><a href="#" ng-click="logout()">Logout ({{auth.profile.name}})</a></li> 
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+
+  <div ui-view>
+    dd
+
+
+
+  </div>
+
+  <hr>
+  <footer>
+    <p ng-show="auth.isAuthenticated">© beOI ASBL/VZW 2015 &mdash; by Damien Leroy</p>
+  </footer>
+</div> <!-- /container -->
+
+<!-- MODAL BOXES -->
+
+<div class="modal fade" id="signup-token-modal" tabindex="-1" role="dialog" aria-labelledby="signupToken" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="mySmallModalLabel">Enter your sign-up token</h4>
+      </div>
+      <div class="modal-body"> 
+        <div id="modal-message"></id>
+        <div class="form-group">
+          <input type="text" class="form-control" id="modal-token" placeholder="Enter token (received from Damien L.)">
+        </div>
+        <div class="form-group">
+          <a class="btn btn-primary" role="button" href="#" ng-click="submit_token()">Submit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contest add modal -->
+<div class="modal fade" id="add-contest-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Create contest</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="contest_name">Contest name</label>
+          <input class="form-control" id="contest_name" >
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Contest add modal -->
+
+
+
+
+
+<!--
+<div class="container">
+   <h1>Layout view - with h &amp; f</h1>
+  <div ng-controller="MainCtrl as testCtrl"><p>Test data: {{testCtrl.testvalues.x}}</p></div>
+  <ng-include src="'scripts/common/components/header/component.html'"></ng-include>
+  <div ui-view></div>
+  <ng-include src="'scripts/common/components/footer/component.html'"></ng-include> 
+</div>-->
