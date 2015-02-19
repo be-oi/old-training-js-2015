@@ -33,7 +33,7 @@ angular
       });
 
       jwtInterceptorProvider.tokenGetter = function(config, auth) {
-        if (config.url.indexOf('//localhost') > 0 || config.url.indexOf('.be-oi.be/') > 0) {
+        if (config.url.indexOf('/api/') >= 0) {
           return auth.idToken;
         } else {
           return
