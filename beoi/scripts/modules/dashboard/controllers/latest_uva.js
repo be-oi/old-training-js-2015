@@ -30,7 +30,7 @@ angular
         };
 
 
-        $scope.uva_pids = [964, 2408, 1508, 2070, 3139, 3503, 615, 944, 103];
+        $scope.uva_pids = [964, 2408, 1508, 2070, 3139, 3503, 615, 944, 103, 2548, 288, 4027, 3873, 2671];
         $scope.uva_problems = {}
 
         $http.get('/api/users-uva-ids', {})
