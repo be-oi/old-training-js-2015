@@ -42,17 +42,22 @@ angular
               .success(function(data){
 
                 $scope.uva_results = _.map(users, function(user) {
+                  var RESULT_NONE = 0, RESULT_TRIED = 1, RESULT_SUCCEEDED = 2;
                   var uva_user_id = user["uva_user_id"];
                   var user_submissions = data[uva_user_id]["subs"];
-                  var user_successes = _.map($scope.uva_pids, function(pid){
-                    return _.find(user_submissions, function(submission){
-                      return submission[1] == pid && submission[2] == 90;
-                    });
+                  var user_results = _.map($scope.uva_pids, function(pid){
+                    return _.reduce(user_submissions, function(memo, result) {
+                      function compResult(verdictId) {
+                        if (verdictId == 90) return RESULT_SUCCEEDED;
+                        else return RESULT_TRIED;
+                      }
+                      return _.max([memo, (result[1] == pid)? compResult(result[2]) : RESULT_NONE]);
+                    }, RESULT_NONE);
                   });
                   return {
                     name: user["name"],
                     uva_user_id: uva_user_id,
-                    uva_problem_results: user_successes
+                    uva_problem_results: user_results
                   }
                 });
               });

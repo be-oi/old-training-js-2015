@@ -82,9 +82,10 @@
       </thead>
       <tbody ng-repeat="uva_user_results in uva_results track by $index">
         <tr>
-          <td style="font-weight: bold;">{{ uva_user_results.name }}</td>
+          <td style="font-weight: bold;"><a href="http://uhunt.felix-halim.net/id/{{ uva_user_results.uva_user_id }}">{{ uva_user_results.name }}</a></td>
           <td ng-repeat="uva_user_result in uva_user_results.uva_problem_results track by $index">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true" ng-show="uva_user_result"></span>
+            <span class="glyphicon glyphicon-ok" title="Completed" aria-hidden="true" ng-show="uva_user_result == 2"></span>
+            <span class="glyphicon glyphicon-minus" title="Tried" aria-hidden="true" ng-show="uva_user_result == 1"></span>
           </td>
         </tr>
       </tbody>
